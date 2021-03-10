@@ -63,7 +63,7 @@ public class Main implements Comparable<Tickets> {
         listofTickets.add(zooTicket);
 
         System.out.println("Sorted by price ");
-        PriorityQueue<Tickets> ticketsPriorityQueue = new PriorityQueue<>();
+        PriorityQueue<Tickets> ticketsPriorityQueue = new PriorityQueue<>(new CostComparator());
         ticketsPriorityQueue.add(rockTicket);
         ticketsPriorityQueue.add(dramTicket);
         ticketsPriorityQueue.add(cinemaTicket);
@@ -78,15 +78,13 @@ public class Main implements Comparable<Tickets> {
         ticketsPriorityQueue.add(rapConcertTicket);
         ticketsPriorityQueue.add(operaTicket);
         ticketsPriorityQueue.add(zooTicket);
- Collections.sort(ticketsArrayList, new CostComparator());
-        for (Tickets cost : ticketsArrayList) {
-
-            System.out.println( cost.getPrice() +" -is cost , "+ " for the  " + cost.getTicketName());
-        }
+ while(!ticketsPriorityQueue.isEmpty()){
+     System.out.println("cost is : "+ticketsPriorityQueue.peek().getPrice()+", for ticket: "+ticketsPriorityQueue.poll().getTicketName() );
+ }
         System.out.println("_________________");
 
 
-        PriorityQueue<Tickets> ticketsPriorityQueue1 = new PriorityQueue<>();
+        PriorityQueue<Tickets> ticketsPriorityQueue1 = new PriorityQueue<>(new VipComparator());
         ticketsPriorityQueue1.add(rockTicket);
         ticketsPriorityQueue1.add(dramTicket);
         ticketsPriorityQueue1.add(cinemaTicket);
@@ -104,9 +102,9 @@ public class Main implements Comparable<Tickets> {
 
 
         System.out.println("Sorted  by VIP status");
-        Collections.sort(ticketsArrayList, new VipComparator());
-        for (Tickets ticketss: ticketsArrayList){
-            System.out.println( ticketss.isVip()+" :is Vip " +" ticket name  is  "+ticketss.getTicketName() );
+        while(!ticketsPriorityQueue1.isEmpty()){
+            System.out.println("Has Vip status: "+ ticketsPriorityQueue1.peek().isVip()+", ticket name is : "+ticketsPriorityQueue1.peek().getTicketName()+
+            ", for price "+ ticketsPriorityQueue1.poll().getPrice());
         }
 
 
